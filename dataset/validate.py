@@ -12,19 +12,11 @@ def getWords(inputFile):
     with open(inputFile, 'r') as file:
         reader = csv.reader(file)
         next(reader, None)
-        output = []
-        for row in reader:
-            name = row[0]
-            count = int(row[1])
-            d = {'name': name, 'count': count}
-            output.append(d)
+        output = [row[0] for row in reader]
+        words = output[0:10000]
 
-    outputSorted = sorted(
-        output[0:10000], key=lambda x: x['count'], reverse=True)
-
-    return outputSorted
+    return words
 
 
 wordsArray = getWords(wordsInputPath)
-
-print(wordsArray[-1])
+print(wordsArray[0])
