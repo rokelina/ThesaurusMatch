@@ -28,8 +28,8 @@ usStatesCities = [
     'san antonio', 'dallas', 'utah', 'salt lake city', 'west valley city', 'provo', 'vermont', 'burlington', 'south burlington', 'rutland', 'virginia', 'virginia beach', 'norfolk', 'richmond', 'washington', 'seattle', 'spokane', 'tacoma', 'west virginia', 'charleston',
     'huntington', 'parkersburg', 'wisconsin', 'milwaukee', 'madison', 'green bay', 'wyoming', 'cheyenne', 'casper', 'laramie']
 
-codes = ["usa", "nyc", "lax", "gop", "dnc", "cia", "fbi", "tel", "cel", "com", "edu", "gov", "mil", "net", "org", "msn", "npr", "pbs", "sec", "aaa", "abc", "wow", "xyz", "iud",
-         "dui", "mon", "tue", "wed", "thu", "fri", "sat", "sun", "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec", "ross", "ussr"]
+codes = ["usa", "nyc", "lax", "gop", "auf", "det", "dnc", "cia", "fbi", "tel", "cel", "com", "edu", "gov", "mil", "net", "org", "msn", "npr", "pbs", "sec", "aaa", "abc", "acc", "wow", "xyz", "iud",
+         "dui", "mon", "tue", "wed", "thu", "fri", "sat", "sun", "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec", "aarp", "ross", "ussr"]
 
 currencyCodes = ['aed', 'afn', 'all', 'amd', 'ang', 'aoa', 'ars', 'aud', 'awg', 'azn', 'bam', 'bbd', 'bdt', 'bgn', 'bhd', 'bif', 'bmd', 'bnd', 'bob', 'bov', 'brl',
                  'bsd', 'btn', 'bwp', 'byn', 'bzd', 'cad', 'cdf', 'che', 'chf', 'chw', 'clf', 'clp', 'cny', 'cop', 'cou', 'crc', 'cuc', 'cup', 'cve', 'czk', 'djf', 'dkk',
@@ -42,6 +42,14 @@ currencyCodes = ['aed', 'afn', 'all', 'amd', 'ang', 'aoa', 'ars', 'aud', 'awg', 
 
 daysMonths = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'january',
               'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
+
+colors = ["red", "orange", "yellow", "green", "blue",
+          "purple", "pink", "black", "white", "gray", "brown"]
+
+cardinal_points = ["north", "northeast", "east", "southeast",
+                   "south", "southwest", "west", "northwest", "midwest"]
+
+gender = ["female", "male", "man", "woman", "men", "women"]
 
 lastNames = ['smith', 'johnson', 'williams', 'brown', 'jones', 'miller', 'davis', 'garcia', 'rodriguez',
              'martinez', 'hernandez', 'lopez', 'gonzalez', 'perez', 'taylor', 'anderson', 'wilson', 'thomas',
@@ -59,4 +67,5 @@ with open(us_name_file, 'r') as file:
         names.append(line[0].lower())
 
 filterWords = countryNames + usStatesCities + codes + \
-    currencyCodes + daysMonths + lastNames + names
+    currencyCodes + daysMonths + colors + \
+    cardinal_points + gender + lastNames + names
