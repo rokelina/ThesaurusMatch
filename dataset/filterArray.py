@@ -52,6 +52,13 @@ codes = [
     "abc",
     "wow"
 ]
+lastNames = ['smith', 'johnson', 'williams', 'brown', 'jones', 'miller', 'davis', 'garcia', 'rodriguez',
+             'martinez', 'hernandez', 'lopez', 'gonzalez', 'perez', 'taylor', 'anderson', 'wilson', 'thomas',
+             'jackson', 'white', 'harris', 'martin', 'thompson', 'moore', 'young', 'allen', 'king', 'wright',
+             'scott', 'green', 'baker', 'adams', 'nelson', 'carter', 'mitchell', 'perez', 'roberts', 'turner',
+             'phillips', 'campbell', 'parker', 'evans', 'edwards', 'collins', 'stewart', 'sanchez', 'morris',
+             'murphy', 'bailey', 'rivera']
+
 
 us_name_file = '/Users/rosinascampino/Desktop/names_project/raw_data/usa/yob2021.txt'
 names = []

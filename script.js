@@ -6,17 +6,15 @@ function load(arr) {
   //get the object located at that index in data and store the value of 'word'
   const randomWord = data[randomIndex].word;
   //get all the synonyms available for that word
-  let synonymArray = [];
-  //look at the whole array and find all the synonyms for randomWord
-  arr.forEach((obj) => {
-    if (obj.word === randomWord) {
-      synonymArray.push(obj.synonyms);
-    }
-  });
+  const synonymArray = arr
+    .filter((obj) => obj.word === randomWord)
+    .map((obj) => obj.synonyms);
+
   const outputWord = {
     word: randomWord,
     synonyms: synonymArray.flat(),
   };
+
   return outputWord;
 }
 
