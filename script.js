@@ -8,20 +8,23 @@ function load(arr) {
   //get all the synonyms available for that word
   const synonymArray = arr
     .filter((obj) => obj.word === randomWord)
-    .map((obj) => obj.synonyms);
+    .map((obj) => obj.synonyms)
+    .flat()
+    .map((word) => word.toLowerCase());
 
   const outputWord = {
     word: randomWord,
-    synonyms: synonymArray.flat(),
+    synonyms: synonymArray,
   };
 
+  console.log(synonymArray);
   return outputWord;
 }
 
 function play(outputWord) {
   //takes the object returned by load()
   //generates a prompt object that displays the object.word value
-  let inputSynonym = prompt(`What's a synonym for "${outputWord.word}"?`);
+  const inputSynonym = prompt(`What's a synonym for "${outputWord.word}"?`);
 
   //checks if input is a valid synonym
   if (outputWord.synonyms.includes(inputSynonym.trim().toLowerCase())) {

@@ -15,7 +15,6 @@ countryNames = [
     "ukraine", "united arab emirates", "united kingdom", "united states of america", "uruguay", "uzbekistan", "vanuatu", "vatican city", "venezuela", "vietnam", "yemen", "yugoslavia" "zambia",
     "zimbabwe"]
 
-
 usStatesCities = [
     'alabama', 'birmingham', 'montgomery', 'mobile', 'alaska', 'anchorage', 'fairbanks', 'juneau', 'arizona', 'phoenix', 'tucson', 'mesa', 'arkansas', 'little rock', 'fort smith', 'fayetteville', 'california', 'los angeles',
     'san francisco', 'san diego', 'colorado', 'denver', 'colorado springs', 'aurora', 'connecticut', 'bridgeport', 'new haven', 'hartford', 'delaware', 'wilmington', 'dover', 'newark', 'florida', 'miami', 'orlando', 'tampa',
@@ -29,29 +28,21 @@ usStatesCities = [
     'san antonio', 'dallas', 'utah', 'salt lake city', 'west valley city', 'provo', 'vermont', 'burlington', 'south burlington', 'rutland', 'virginia', 'virginia beach', 'norfolk', 'richmond', 'washington', 'seattle', 'spokane', 'tacoma', 'west virginia', 'charleston',
     'huntington', 'parkersburg', 'wisconsin', 'milwaukee', 'madison', 'green bay', 'wyoming', 'cheyenne', 'casper', 'laramie']
 
-codes = [
-    "usa",
-    "nyc",
-    "lax",
-    "gop",
-    "dnc",
-    "cia",
-    "fbi",
-    "dot",
-    "com",
-    "edu",
-    "gov",
-    "mil",
-    "net",
-    "org",
-    "msn",
-    "npr",
-    "pbs",
-    "sec",
-    "aaa",
-    "abc",
-    "wow"
-]
+codes = ["usa", "nyc", "lax", "gop", "dnc", "cia", "fbi", "tel", "cel", "com", "edu", "gov", "mil", "net", "org", "msn", "npr", "pbs", "sec", "aaa", "abc", "wow", "xyz", "iud",
+         "dui", "mon", "tue", "wed", "thu", "fri", "sat", "sun", "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec", "ross", "ussr"]
+
+currencyCodes = ['aed', 'afn', 'all', 'amd', 'ang', 'aoa', 'ars', 'aud', 'awg', 'azn', 'bam', 'bbd', 'bdt', 'bgn', 'bhd', 'bif', 'bmd', 'bnd', 'bob', 'bov', 'brl',
+                 'bsd', 'btn', 'bwp', 'byn', 'bzd', 'cad', 'cdf', 'che', 'chf', 'chw', 'clf', 'clp', 'cny', 'cop', 'cou', 'crc', 'cuc', 'cup', 'cve', 'czk', 'djf', 'dkk',
+                 'dop', 'dzd', 'egp', 'ern', 'etb', 'eur', 'fjd', 'fkp', 'gbp', 'gel', 'ghs', 'gip', 'gmd', 'gnf', 'gtq', 'gyd', 'hkd', 'hnl', 'hrk', 'htg', 'huf', 'idr', 'ils',
+                 'inr', 'iqd', 'irr', 'isk', 'jmd', 'jod', 'jpy', 'kes', 'kgs', 'khr', 'kmf', 'kpw', 'krw', 'kwd', 'kyd', 'kzt', 'lak', 'lbp', 'lkr', 'lrd', 'lsl', 'lyd', 'mad',
+                 'mdl', 'mga', 'mkd', 'mmk', 'mnt', 'mop', 'mru', 'mur', 'mvr', 'mwk', 'mxn', 'mxv', 'myr', 'mzn', 'nad', 'ngn', 'nio', 'nok', 'npr', 'nzd', 'omr', 'pab', 'pen',
+                 'pgk', 'php', 'pkr', 'pln', 'pyg', 'qar', 'ron', 'rsd', 'rub', 'rwf', 'sar', 'sbd', 'scr', 'sdg', 'sek', 'sgd', 'shp', 'sll', 'sos', 'srd', 'ssp', 'stn', 'svc',
+                 'syp', 'szl', 'thb', 'tjs', 'tmt', 'tnd', 'top', 'try', 'ttd', 'twd', 'tzs', 'uah', 'ugx', 'usd', 'usn', 'uyi', 'uyu', 'uzs', 'ves', 'vnd', 'vuv', 'wst', 'xaf',
+                 'xag', 'xau', 'xcd', 'xdr', 'xof', 'xpd', 'xpf', 'xpt', 'yer', 'zmw', 'zwl']
+
+daysMonths = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'january',
+              'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
+
 lastNames = ['smith', 'johnson', 'williams', 'brown', 'jones', 'miller', 'davis', 'garcia', 'rodriguez',
              'martinez', 'hernandez', 'lopez', 'gonzalez', 'perez', 'taylor', 'anderson', 'wilson', 'thomas',
              'jackson', 'white', 'harris', 'martin', 'thompson', 'moore', 'young', 'allen', 'king', 'wright',
@@ -59,13 +50,13 @@ lastNames = ['smith', 'johnson', 'williams', 'brown', 'jones', 'miller', 'davis'
              'phillips', 'campbell', 'parker', 'evans', 'edwards', 'collins', 'stewart', 'sanchez', 'morris',
              'murphy', 'bailey', 'rivera']
 
-
 us_name_file = '/Users/rosinascampino/Desktop/names_project/raw_data/usa/yob2021.txt'
 names = []
 
 with open(us_name_file, 'r') as file:
     for row in file:
         line = row.split(',')
-        names.append(line[0])
+        names.append(line[0].lower())
 
-filterWords = countryNames + usStatesCities + codes + names
+filterWords = countryNames + usStatesCities + codes + \
+    currencyCodes + daysMonths + lastNames + names
