@@ -43,6 +43,7 @@ def filterThesaurus(inputFile, frequentList):
 
 def outputThesaurus(inputArray, filterArray, outputFile):
     output = []
+    # another iteration to check for "inappropiate" synonyms
     for obj in inputArray:
         filtered = []
         for synonym in obj['synonyms']:
@@ -56,10 +57,6 @@ def outputThesaurus(inputArray, filterArray, outputFile):
     with open(outputFile, 'w') as file:
         json.dump(output, file)
     return output
-
-
-# wordsArray = getWords(frequentWordsPath, filterWords)
-# thesaurus = getThesaurus(thesaurusInputPath, thesaurusOutputPath, wordsArray)
 
 
 filter_words = getFilterArray(filterWords)
