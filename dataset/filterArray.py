@@ -1,3 +1,5 @@
+import csv
+
 countryNames = [
     'afghanistan', 'albania', 'algeria', 'andorra', 'angola', 'antigua and barbuda', 'argentina', 'armenia', 'australia', 'austria', 'azerbaijan',
     'bahamas', 'bahrain', 'bangladesh', 'barbados', 'belarus', 'belgium', 'belize', 'benin', 'bhutan', 'bolivia', 'bosnia and herzegovina', 'botswana', 'brazil', 'brunei', 'bulgaria', 'burkina faso', 'burundi',
@@ -69,3 +71,10 @@ with open(us_name_file, 'r') as file:
 filterWords = countryNames + usStatesCities + codes + \
     currencyCodes + daysMonths + colors + \
     cardinal_points + gender + lastNames + names
+
+
+badWords = 'dataset/filterWords.csv'
+with open(badWords, 'a', newline='') as file:
+    writer = csv.writer(file)
+    for item in filterWords:
+        writer.writerow([item])
