@@ -21,7 +21,7 @@ body {
   button {
     border: #333;
     border-radius: 5px;
-    background-color: #555555;
+    background-color: #444444;
     color: #f5f5f5;
     padding: 8px;
     cursor: pointer;
@@ -30,6 +30,8 @@ body {
   button:hover {
     background-color:#777777;
   }
+
+ 
 
   .container {
     max-width: 500px;

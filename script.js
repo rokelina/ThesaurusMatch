@@ -4,13 +4,22 @@ const startBtn = document.querySelector('.start-app');
 const wordItem = document.getElementById('word-item');
 const form = document.getElementById('word-form');
 const formInput = document.getElementById('word-input');
-const solution = document.getElementById('solution-item');
+const solutionContainer = document.getElementById('solution-container');
 const submitedWord = document.querySelector('h4');
 const solutionMessage = document.querySelector('.solution-message');
 const solutionBtn = document.querySelector('.solution-button');
-const solutionList = document.querySelector('li');
 const listWrapper = document.querySelector('ul');
+const solutionList = document.querySelector('li');
+const restartBtn = document.querySelector('.restart-button');
+//restart button functionality
 
+//improve solution array style (italics, change font size ocuppy all space, change background color)
+
+//disable form on submit
+
+//footer
+
+// fix how to load the json file. use fetch api?
 function show(item) {
   if (item.classList.contains('hidden')) {
     item.classList.remove('hidden');
@@ -24,15 +33,18 @@ function hide(item) {
 }
 function disableBtn(btn) {
   btn.disabled = true;
+  //add transparency property
 }
 function load(arr) {
   const randomIndex = Math.floor(Math.random() * arr.length + 1);
   const randomWord = data[randomIndex].word;
-  const synonymArray = arr
+  const allSynonyms = arr
     .filter((obj) => obj.word === randomWord)
     .map((obj) => obj.synonyms)
     .flat()
     .map((word) => word.toLowerCase());
+  //eliminate doubles from synonyms array
+  const synonymArray = [...new Set(allSynonyms)];
 
   const outputWord = {
     word: randomWord,
@@ -41,11 +53,15 @@ function load(arr) {
   return outputWord;
 }
 
-function start() {
+function getPrompt() {
   const randomWord = load(data);
   const word = document.querySelector('h2');
   word.textContent = randomWord.word;
   solutionList.textContent = randomWord.synonyms;
+}
+
+function start() {
+  getPrompt();
   show(wordItem);
   disableBtn(startBtn);
 }
@@ -66,7 +82,8 @@ function formSubmit(e) {
   }
 
   submitedWord.textContent = input;
-  show(solution);
+  formInput.value = '';
+  show(solutionContainer);
 }
 
 function toggleSolution() {
@@ -79,6 +96,12 @@ function toggleSolution() {
   }
 }
 
+function restart() {
+  getPrompt();
+  hide(solutionContainer);
+}
+
 startBtn.addEventListener('click', start);
 form.addEventListener('submit', formSubmit);
 solutionBtn.addEventListener('click', toggleSolution);
+restartBtn.addEventListener('click', restart);
