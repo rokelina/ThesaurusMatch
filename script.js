@@ -10,8 +10,7 @@ const solutionMessage = document.querySelector('.solution-message');
 const solutionBtn = document.querySelector('.solution-button');
 const listWrapper = document.querySelector('ul');
 const solutionList = document.querySelector('li');
-const restartBtn = document.querySelector('.restart-button');
-//restart button functionality
+const restartBtn = document.getElementById('restart-button');
 
 //improve solution array style (italics, change font size ocuppy all space, change background color)
 
@@ -84,6 +83,7 @@ function formSubmit(e) {
   submitedWord.textContent = input;
   formInput.value = '';
   show(solutionContainer);
+  show(restartBtn);
 }
 
 function toggleSolution() {
@@ -99,6 +99,9 @@ function toggleSolution() {
 function restart() {
   getPrompt();
   hide(solutionContainer);
+  hide(restartBtn);
+  solutionBtn.textContent = 'Show solution';
+  hide(listWrapper);
 }
 
 startBtn.addEventListener('click', start);
