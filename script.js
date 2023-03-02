@@ -1,11 +1,33 @@
 import data from './dataset/thesaurus.json' assert { type: 'json' };
 
+const startBtn = document.querySelector('.start-app');
+const wordItem = document.getElementById('word-item');
+const form = document.getElementById('word-form');
+const formInput = document.getElementById('word-input');
+const solution = document.getElementById('solution-item');
+const submitedWord = document.querySelector('h4');
+const solutionMessage = document.querySelector('.solution-message');
+const solutionBtn = document.querySelector('.solution-button');
+const solutionList = document.querySelector('li');
+const listWrapper = document.querySelector('ul');
+
+function show(item) {
+  if (item.classList.contains('hidden')) {
+    item.classList.remove('hidden');
+  }
+}
+
+function hide(item) {
+  if (!item.classList.contains('hidden')) {
+    item.classList.add('hidden');
+  }
+}
+function disableBtn(btn) {
+  btn.disabled = true;
+}
 function load(arr) {
-  //generate a random index
   const randomIndex = Math.floor(Math.random() * arr.length + 1);
-  //get the object located at that index in data and store the value of 'word'
   const randomWord = data[randomIndex].word;
-  //get all the synonyms available for that word
   const synonymArray = arr
     .filter((obj) => obj.word === randomWord)
     .map((obj) => obj.synonyms)
@@ -16,23 +38,47 @@ function load(arr) {
     word: randomWord,
     synonyms: synonymArray,
   };
-
-  console.log(synonymArray);
   return outputWord;
 }
 
-function play(outputWord) {
-  //takes the object returned by load()
-  //generates a prompt object that displays the object.word value
-  const inputSynonym = prompt(`What's a synonym for "${outputWord.word}"?`);
+function start() {
+  const randomWord = load(data);
+  const word = document.querySelector('h2');
+  word.textContent = randomWord.word;
+  solutionList.textContent = randomWord.synonyms;
+  show(wordItem);
+  disableBtn(startBtn);
+}
 
-  //checks if input is a valid synonym
-  if (outputWord.synonyms.includes(inputSynonym.trim().toLowerCase())) {
-    alert('Correct!');
+function formSubmit(e) {
+  e.preventDefault();
+  const input = formInput.value;
+  if (input.trim() === '') {
+    alert('Type a synonym');
+    return;
+  }
+  //compare the value of input with the text content of li
+  const array = solutionList.textContent.split(',');
+  if (array.includes(input.trim().toLowerCase())) {
+    solutionMessage.textContent = 'Correct!';
   } else {
-    alert("That word doesn't seem to be a synonym");
+    solutionMessage.textContent = "That word doesn't seem to be a synonym";
+  }
+
+  submitedWord.textContent = input;
+  show(solution);
+}
+
+function toggleSolution() {
+  if (solutionBtn.textContent === 'Show solution') {
+    show(listWrapper);
+    solutionBtn.textContent = 'Hide solution';
+  } else {
+    hide(listWrapper);
+    solutionBtn.textContent = 'Show solution';
   }
 }
 
-const word = load(data);
-play(word);
+startBtn.addEventListener('click', start);
+form.addEventListener('submit', formSubmit);
+solutionBtn.addEventListener('click', toggleSolution);

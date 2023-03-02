@@ -2,7 +2,7 @@ import json
 import csv
 
 frequentWordsPath = 'dataset/sources/unigram_freq.csv'
-filterWords = 'dataset/sources/filterWords.csv'
+filterWordsPath = 'dataset/sources/filterWords.csv'
 
 thesaurusInputPath = 'dataset/sources/en_thesaurus.jsonl'
 thesaurusOutputPath = 'dataset/thesaurus.json'
@@ -59,7 +59,7 @@ def outputThesaurus(inputArray, filterArray, outputFile):
     return output
 
 
-filter_words = getFilterArray(filterWords)
+filter_words = getFilterArray(filterWordsPath)
 frequent_words = getFrequentWords(frequentWordsPath, filter_words)
 filtered_thesaurus = filterThesaurus(thesaurusInputPath, frequent_words)
 final_output = outputThesaurus(

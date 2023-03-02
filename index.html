@@ -8,18 +8,18 @@
     <title>Synonym Finder</title>
   </head>
   <body>
-    <div class="container">
+    <main class="container">
       <header>
         <img src="images/dictionary.png" alt="" />
         <h1>Synonym Finder</h1>
       </header>
       <div>
         <button class="start-app">Start</button>
-        <div class="word-container">
-          <section class="word-item">
-            <p>What's a synonym for...?</p>
-            <h2>Word</h2>
-          </section>
+      </div>
+      <div class="word-container">
+        <section id="word-item" class="hidden">
+          <p>What's a synonym for...?</p>
+          <h2>word</h2>
           <form id="word-form">
             <input
               type="text"
@@ -29,22 +29,21 @@
               placeholder="Enter synonym..."
             />
           </form>
-          <div class="solution-container">
-            <section>
-              <h4>Input word</h4>
-              <p>Correct!</p>
-              <div class="solution">
-                <button>Show solution</button>
-                <ul>
-                  <li>list, of, synonyms</li>
-                </ul>
-              </div>
-            </section>
+        </section>
+        <section id="solution-item" class="hidden">
+          <h4>Input word</h4>
+          <p class="solution-message">Correct!</p>
+          <div class="solution">
+            <button class="solution-button">Show solution</button>
+            <ul class="hidden">
+              <li>list, of, synonyms</li>
+            </ul>
           </div>
           <button class="restart-button">Restart</button>
-        </div>
+        </section>
       </div>
-    </div>
+    </main>
     <script type="module" src="script.js"></script>
+    <footer>Footer</footer>
   </body>
 </html>
