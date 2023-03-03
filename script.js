@@ -10,13 +10,12 @@ const listWrapper = document.querySelector('ul');
 const solutionList = document.querySelector('li');
 const restartBtn = document.getElementById('restart-button');
 
-//improve solution array style (italics, change font size ocuppy all space, change background color?)
 async function getData() {
   const res = await fetch('./dataset/thesaurus.json');
   const data = await res.json();
   return data;
 }
-function load(arr) {
+function getRandomWord(arr) {
   const randomIndex = Math.floor(Math.random() * arr.length + 1);
   const randomWord = arr[randomIndex].word;
   const allSynonyms = arr
@@ -25,25 +24,32 @@ function load(arr) {
     .flat()
     .map((word) => word.toLowerCase());
 
-  //eliminate doubles from synonyms array
   const synonymArray = [...new Set(allSynonyms)];
-
   const outputWord = {
     word: randomWord,
     synonyms: synonymArray,
   };
+
   return outputWord;
 }
 
 async function getPrompt() {
-  const data = await getData();
-  const randomWord = load(data);
-  const word = document.querySelector('h2');
-  word.textContent = randomWord.word;
+  const wordsArray = await getData();
+  const randomWord = getRandomWord(wordsArray);
+  const promptWord = document.querySelector('h2');
+  promptWord.textContent = randomWord.word;
   solutionList.textContent = randomWord.synonyms;
 }
 
-function formSubmit(e) {
+function onStart() {
+  getPrompt();
+  show(wordItem);
+  disable(startBtn);
+  startBtn.style.opacity = '0';
+  startBtn.style.cursor = 'auto';
+}
+
+function onSubmit(e) {
   e.preventDefault();
   const input = formInput.value;
   if (input.trim() === '') {
@@ -67,12 +73,13 @@ function formSubmit(e) {
   disable(formInput);
 }
 
-function start() {
+function onRestart() {
+  enable(formInput);
   getPrompt();
-  show(wordItem);
-  disable(startBtn);
-  startBtn.style.opacity = '0';
-  startBtn.style.cursor = 'auto';
+  hide(solutionContainer);
+  hide(restartBtn);
+  solutionBtn.textContent = 'Show solution';
+  hide(listWrapper);
 }
 
 function toggleSolution() {
@@ -83,15 +90,6 @@ function toggleSolution() {
     hide(listWrapper);
     solutionBtn.textContent = 'Show solution';
   }
-}
-
-function restart() {
-  enable(formInput);
-  getPrompt();
-  hide(solutionContainer);
-  hide(restartBtn);
-  solutionBtn.textContent = 'Show solution';
-  hide(listWrapper);
 }
 
 function show(item) {
@@ -115,10 +113,10 @@ function enable(item) {
 }
 
 function init() {
-  startBtn.addEventListener('click', start);
-  form.addEventListener('submit', formSubmit);
+  startBtn.addEventListener('click', onStart);
+  form.addEventListener('submit', onSubmit);
   solutionBtn.addEventListener('click', toggleSolution);
-  restartBtn.addEventListener('click', restart);
+  restartBtn.addEventListener('click', onRestart);
 }
 
 init();
