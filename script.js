@@ -9,12 +9,14 @@ const solutionBtn = document.querySelector('.solution-button');
 const listWrapper = document.querySelector('ul');
 const solutionList = document.querySelector('li');
 const restartBtn = document.getElementById('restart-button');
+const ghLogo = document.querySelector('.logo');
 
 async function getData() {
   const res = await fetch('./dataset/thesaurus.json');
   const data = await res.json();
   return data;
 }
+
 function getRandomWord(arr) {
   const randomIndex = Math.floor(Math.random() * arr.length + 1);
   const randomWord = arr[randomIndex].word;
@@ -35,10 +37,10 @@ function getRandomWord(arr) {
 
 async function getPrompt() {
   const wordsArray = await getData();
-  const randomWord = getRandomWord(wordsArray);
+  const randomWordObject = getRandomWord(wordsArray);
   const promptWord = document.querySelector('h2');
-  promptWord.textContent = randomWord.word;
-  solutionList.textContent = randomWord.synonyms;
+  promptWord.textContent = randomWordObject.word;
+  solutionList.textContent = randomWordObject.synonyms;
 }
 
 function onStart() {
@@ -117,6 +119,9 @@ function init() {
   form.addEventListener('submit', onSubmit);
   solutionBtn.addEventListener('click', toggleSolution);
   restartBtn.addEventListener('click', onRestart);
+  ghLogo.addEventListener('click', () => {
+    window.open('https://github.com/rokelina/synonyms-game'), '_blank';
+  });
 }
 
 init();
