@@ -1,5 +1,3 @@
-import data from './dataset/thesaurus.json' assert { type: 'json' };
-
 const startBtn = document.querySelector('.start-app');
 const wordItem = document.getElementById('word-item');
 const form = document.getElementById('word-form');
@@ -13,33 +11,20 @@ const solutionList = document.querySelector('li');
 const restartBtn = document.getElementById('restart-button');
 
 //improve solution array style (italics, change font size ocuppy all space, change background color?)
-
-// fix how to load the json file. use fetch api?
-function show(item) {
-  if (item.classList.contains('hidden')) {
-    item.classList.remove('hidden');
-  }
-}
-
-function hide(item) {
-  if (!item.classList.contains('hidden')) {
-    item.classList.add('hidden');
-  }
-}
-function disable(item) {
-  item.disabled = true;
-}
-function enable(item) {
-  item.disabled = false;
+async function getData() {
+  const res = await fetch('./dataset/thesaurus.json');
+  const data = await res.json();
+  return data;
 }
 function load(arr) {
   const randomIndex = Math.floor(Math.random() * arr.length + 1);
-  const randomWord = data[randomIndex].word;
+  const randomWord = arr[randomIndex].word;
   const allSynonyms = arr
     .filter((obj) => obj.word === randomWord)
     .map((obj) => obj.synonyms)
     .flat()
     .map((word) => word.toLowerCase());
+
   //eliminate doubles from synonyms array
   const synonymArray = [...new Set(allSynonyms)];
 
@@ -50,19 +35,12 @@ function load(arr) {
   return outputWord;
 }
 
-function getPrompt() {
+async function getPrompt() {
+  const data = await getData();
   const randomWord = load(data);
   const word = document.querySelector('h2');
   word.textContent = randomWord.word;
   solutionList.textContent = randomWord.synonyms;
-}
-
-function start() {
-  getPrompt();
-  show(wordItem);
-  disable(startBtn);
-  startBtn.style.opacity = '0';
-  startBtn.style.cursor = 'auto';
 }
 
 function formSubmit(e) {
@@ -89,6 +67,14 @@ function formSubmit(e) {
   disable(formInput);
 }
 
+function start() {
+  getPrompt();
+  show(wordItem);
+  disable(startBtn);
+  startBtn.style.opacity = '0';
+  startBtn.style.cursor = 'auto';
+}
+
 function toggleSolution() {
   if (solutionBtn.textContent === 'Show solution') {
     show(listWrapper);
@@ -106,6 +92,26 @@ function restart() {
   hide(restartBtn);
   solutionBtn.textContent = 'Show solution';
   hide(listWrapper);
+}
+
+function show(item) {
+  if (item.classList.contains('hidden')) {
+    item.classList.remove('hidden');
+  }
+}
+
+function hide(item) {
+  if (!item.classList.contains('hidden')) {
+    item.classList.add('hidden');
+  }
+}
+
+function disable(item) {
+  item.disabled = true;
+}
+
+function enable(item) {
+  item.disabled = false;
 }
 
 function init() {
