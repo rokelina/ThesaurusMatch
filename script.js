@@ -34,17 +34,16 @@ function getRandomWord(arr) {
   return outputWord;
 }
 
-async function getPrompt() {
+async function generatePrompt() {
   const wordsArray = await getData();
   const randomWordObject = getRandomWord(wordsArray);
   const promptWord = document.querySelector('h2');
   promptWord.textContent = randomWordObject.word;
   solutionList.textContent = randomWordObject.synonyms;
-  solutionList.textContent = solutionList.textContent.split(',').join(', ');
 }
 
 function onStart() {
-  getPrompt();
+  generatePrompt();
   show(wordItem);
   disable(startBtn);
   startBtn.style.opacity = '0';
@@ -75,7 +74,7 @@ function onSubmit(e) {
 
 function onRestart() {
   enable(formInput);
-  getPrompt();
+  generatePrompt();
   hide(solutionContainer);
   hide(restartBtn);
   solutionBtn.textContent = 'Show solution';
@@ -85,6 +84,7 @@ function onRestart() {
 function toggleSolution() {
   if (solutionBtn.textContent === 'Show solution') {
     show(solutionWrapper);
+    solutionList.textContent = solutionList.textContent.split(',').join(', ');
     solutionBtn.textContent = 'Hide solution';
   } else {
     hide(solutionWrapper);
