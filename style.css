@@ -45,9 +45,6 @@ footer{
   font-size: 12px;
 }
  
-img{
-  padding: 5px;
-}
 
 ul{
   font-size: 14px;
@@ -85,6 +82,9 @@ h3{
   font-weight:100;
   margin-bottom: 2rem;
   margin-top: 5px;
+}
+.logo{
+  padding: 3px 10px;
 }
 
 .logo:hover{
