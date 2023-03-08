@@ -49,6 +49,7 @@ h3{
 }
 
 ul{
+  display: flex;
   position: relative;
   background-color:white;
   font-size: 14px;
@@ -56,12 +57,13 @@ ul{
   border-radius: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
-}
-
-li{
   max-width: 450px;
+  height: fit-content;
 }
-
+.solution-list{
+  text-align: justify;
+  letter-spacing: 1px;
+}
 .container {
   max-width: 500px;
   margin: 30px auto;

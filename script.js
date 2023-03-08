@@ -7,7 +7,7 @@ const submitedWord = document.querySelector('h3');
 const solutionMessage = document.querySelector('.solution-message');
 const solutionBtn = document.querySelector('.solution-button');
 const listWrapper = document.querySelector('ul');
-const solutionList = document.querySelector('li');
+const solutionList = document.querySelector('.solution-list');
 const restartBtn = document.getElementById('restart-button');
 
 async function getData() {
