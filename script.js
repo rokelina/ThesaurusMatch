@@ -6,7 +6,7 @@ const solutionContainer = document.getElementById('solution-container');
 const submitedWord = document.querySelector('h3');
 const solutionMessage = document.querySelector('.solution-message');
 const solutionBtn = document.querySelector('.solution-button');
-const listWrapper = document.querySelector('ul');
+const solutionWrapper = document.getElementById('solution-box');
 const solutionList = document.querySelector('.solution-list');
 const restartBtn = document.getElementById('restart-button');
 
@@ -40,6 +40,7 @@ async function getPrompt() {
   const promptWord = document.querySelector('h2');
   promptWord.textContent = randomWordObject.word;
   solutionList.textContent = randomWordObject.synonyms;
+  solutionList.textContent = solutionList.textContent.split(',').join(', ');
 }
 
 function onStart() {
@@ -60,11 +61,9 @@ function onSubmit(e) {
   //compare the value of input with the text content of li
   const array = solutionList.textContent.split(',');
   if (array.includes(input.trim().toLowerCase())) {
-    solutionMessage.textContent = 'Correct!';
-    solutionMessage.style.color = '#5a7a5a';
+    solutionMessage.textContent = '🟢 Correct!';
   } else {
-    solutionMessage.textContent = "That doesn't seem to be a synonym";
-    solutionMessage.style.color = '#e16161';
+    solutionMessage.textContent = "🔴 That doesn't seem to be a synonym";
   }
 
   submitedWord.textContent = input;
@@ -80,15 +79,15 @@ function onRestart() {
   hide(solutionContainer);
   hide(restartBtn);
   solutionBtn.textContent = 'Show solution';
-  hide(listWrapper);
+  hide(solutionWrapper);
 }
 
 function toggleSolution() {
   if (solutionBtn.textContent === 'Show solution') {
-    show(listWrapper);
+    show(solutionWrapper);
     solutionBtn.textContent = 'Hide solution';
   } else {
-    hide(listWrapper);
+    hide(solutionWrapper);
     solutionBtn.textContent = 'Show solution';
   }
 }
