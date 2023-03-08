@@ -48,21 +48,20 @@ h3{
   margin-bottom: 0;
 }
 
-ul{
-  display: flex;
-  position: relative;
-  background-color:white;
-  font-size: 14px;
-  font-style: italic;
-  border-radius: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  max-width: 450px;
-  height: fit-content;
+.solution{
+  min-width: 350px;
 }
+
 .solution-list{
   text-align: justify;
-  letter-spacing: 1px;
+  word-wrap: break-word;
+  word-spacing: 2px;
+  height: fit-content;
+  background-color:white;
+  font-size: 14px;
+  border-radius: 10px;
+  padding: 10px 5px;
+  margin-top: 1.5rem;
 }
 .container {
   max-width: 500px;
@@ -88,7 +87,7 @@ ul{
 }
 
 .solution-message{
-  font-weight:100;
+  font-size: 15px;
   margin-bottom: 2rem;
   margin-top: 5px;
 }
