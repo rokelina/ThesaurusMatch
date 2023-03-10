@@ -1,5 +1,6 @@
 const startBtn = document.querySelector('.start-app');
 const wordItem = document.getElementById('word-item');
+const promptWord = document.querySelector('h2');
 const form = document.getElementById('word-form');
 const formInput = document.getElementById('word-input');
 const solutionContainer = document.getElementById('solution-container');
@@ -11,9 +12,17 @@ const solutionList = document.querySelector('.solution-list');
 const restartBtn = document.getElementById('restart-button');
 
 async function getData() {
-  const res = await fetch('./dataset/thesaurus.json');
-  const data = await res.json();
-  return data;
+  try {
+    const res = await fetch('./dataset/thesaurus.json');
+    if (!res.ok) {
+      throw new Error('Something went wrong');
+    }
+    const data = await res.json();
+    console.log(res);
+    return data;
+  } catch (error) {
+    console.error('Something went wrong');
+  }
 }
 
 function getRandomWord(arr) {
@@ -37,7 +46,6 @@ function getRandomWord(arr) {
 async function generatePrompt() {
   const wordsArray = await getData();
   const randomWordObject = getRandomWord(wordsArray);
-  const promptWord = document.querySelector('h2');
   promptWord.textContent = randomWordObject.word;
   solutionList.textContent = randomWordObject.synonyms;
 }
