@@ -18,9 +18,12 @@ async function getData() {
       throw new Error('Something went wrong');
     }
     const data = await res.json();
-    console.log(res);
-    return data;
+
+    const randomWordObject = getRandomWord(data);
+    promptWord.textContent = randomWordObject.word;
+    solutionList.textContent = randomWordObject.synonyms;
   } catch (error) {
+    promptWord.textContent = 'Something went wrong';
     console.error('Something went wrong');
   }
 }
@@ -43,15 +46,8 @@ function getRandomWord(arr) {
   return outputWord;
 }
 
-async function generatePrompt() {
-  const wordsArray = await getData();
-  const randomWordObject = getRandomWord(wordsArray);
-  promptWord.textContent = randomWordObject.word;
-  solutionList.textContent = randomWordObject.synonyms;
-}
-
 function onStart() {
-  generatePrompt();
+  getData();
   show(wordItem);
   disable(startBtn);
   startBtn.style.opacity = '0';
@@ -82,7 +78,7 @@ function onSubmit(e) {
 
 function onRestart() {
   enable(formInput);
-  generatePrompt();
+  getData();
   hide(solutionContainer);
   hide(restartBtn);
   solutionBtn.textContent = 'Show solution';
@@ -98,6 +94,10 @@ function toggleSolution() {
     hide(solutionWrapper);
     solutionBtn.textContent = 'Show solution';
   }
+}
+
+function showErrorUI() {
+  //add error UI
 }
 
 function show(item) {
@@ -125,6 +125,7 @@ function init() {
   form.addEventListener('submit', onSubmit);
   solutionBtn.addEventListener('click', toggleSolution);
   restartBtn.addEventListener('click', onRestart);
+  document.addEventListener('DOMContentLoaded', getData);
 }
 
 init();
