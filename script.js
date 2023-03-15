@@ -20,6 +20,7 @@ async function getData() {
     const data = await res.json();
 
     const randomWordObject = getRandomWord(data);
+
     promptWord.textContent = randomWordObject.word;
     solutionList.textContent = randomWordObject.synonyms;
   } catch (error) {
@@ -47,7 +48,6 @@ function getRandomWord(arr) {
 }
 
 function onStart() {
-  getData();
   show(wordItem);
   disable(startBtn);
   startBtn.style.opacity = '0';
