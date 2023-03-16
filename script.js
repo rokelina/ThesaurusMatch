@@ -25,7 +25,7 @@ async function getData() {
 
     show(startBtn);
   } catch (error) {
-    showErrorUI();
+    showErrorMessage();
     console.error('Something went wrong');
   }
 }
@@ -104,7 +104,7 @@ function toggleSolution() {
   }
 }
 
-function showErrorUI() {
+function showErrorMessage() {
   const errorMsg = document.createElement('h2');
   errorMsg.textContent = 'Oops... something went wrong';
   errorMsg.style.marginTop = '4rem';
