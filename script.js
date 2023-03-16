@@ -49,6 +49,7 @@ function getRandomWord(arr) {
 
 function onStart() {
   show(wordItem);
+  showWordPrompt();
   disable(startBtn);
   startBtn.style.opacity = '0';
   startBtn.style.cursor = 'auto';
@@ -77,12 +78,14 @@ function onSubmit(e) {
 }
 
 function onRestart() {
-  enable(formInput);
   getData();
+  showWordPrompt();
+  enable(formInput);
   hide(solutionContainer);
   hide(restartBtn);
-  solutionBtn.textContent = 'Show solution';
   hide(solutionWrapper);
+  promptWord.style.opacity = '0';
+  solutionBtn.textContent = 'Show solution';
 }
 
 function toggleSolution() {
@@ -96,6 +99,9 @@ function toggleSolution() {
   }
 }
 
+function showWordPrompt() {
+  setTimeout(() => (promptWord.style.opacity = '1'), 200);
+}
 function showErrorUI() {
   //add error UI
 }
