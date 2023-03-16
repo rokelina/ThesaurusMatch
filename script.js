@@ -1,6 +1,6 @@
-const startBtn = document.querySelector('.start-app');
+const startBtn = document.getElementById('start-app');
 const wordItem = document.getElementById('word-item');
-const promptWord = document.querySelector('h2');
+const promptWord = document.getElementById('prompt-word');
 const form = document.getElementById('word-form');
 const formInput = document.getElementById('word-input');
 const solutionContainer = document.getElementById('solution-container');
@@ -20,11 +20,12 @@ async function getData() {
     const data = await res.json();
 
     const randomWordObject = getRandomWord(data);
-
     promptWord.textContent = randomWordObject.word;
     solutionList.textContent = randomWordObject.synonyms;
+
+    show(startBtn);
   } catch (error) {
-    promptWord.textContent = 'Something went wrong';
+    showErrorUI();
     console.error('Something went wrong');
   }
 }
@@ -88,6 +89,10 @@ function onRestart() {
   solutionBtn.textContent = 'Show solution';
 }
 
+function showWordPrompt() {
+  setTimeout(() => (promptWord.style.opacity = '1'), 200);
+}
+
 function toggleSolution() {
   if (solutionBtn.textContent === 'Show solution') {
     show(solutionWrapper);
@@ -99,11 +104,11 @@ function toggleSolution() {
   }
 }
 
-function showWordPrompt() {
-  setTimeout(() => (promptWord.style.opacity = '1'), 200);
-}
 function showErrorUI() {
-  //add error UI
+  const errorMsg = document.createElement('h2');
+  errorMsg.textContent = 'Oops... something went wrong';
+  errorMsg.style.marginTop = '4rem';
+  document.querySelector('header').insertAdjacentElement('afterend', errorMsg);
 }
 
 function show(item) {
