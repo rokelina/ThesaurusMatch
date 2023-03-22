@@ -4,11 +4,11 @@ const promptWord = document.getElementById('prompt-word');
 const form = document.getElementById('word-form');
 const formInput = document.getElementById('word-input');
 const solutionContainer = document.getElementById('solution-container');
-const submitedWord = document.querySelector('h3');
-const solutionMessage = document.querySelector('.solution-message');
-const solutionBtn = document.querySelector('.solution-button');
+const submitedWord = document.getElementById('submited-word');
+const solutionMessage = document.getElementById('solution-message');
+const solutionBtn = document.getElementById('solution-button');
 const solutionWrapper = document.getElementById('solution-box');
-const solutionList = document.querySelector('.solution-list');
+const solutionList = document.getElementById('solution-list');
 const restartBtn = document.getElementById('restart-button');
 
 async function getData() {
