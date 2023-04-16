@@ -50,7 +50,7 @@ function getRandomWord(arr) {
 
 function onStart() {
   show(wordItem);
-  showWordPrompt();
+  show(promptWord);
   disable(startBtn);
   startBtn.style.opacity = '0';
   startBtn.style.cursor = 'auto';
@@ -80,17 +80,12 @@ function onSubmit(e) {
 
 function onRestart() {
   getData();
-  showWordPrompt();
+  show(promptWord);
   enable(formInput);
   hide(solutionContainer);
   hide(restartBtn);
   hide(solutionWrapper);
-  promptWord.style.opacity = '0';
   solutionBtn.textContent = 'Show solution';
-}
-
-function showWordPrompt() {
-  setTimeout(() => (promptWord.style.opacity = '1'), 200);
 }
 
 function toggleSolution() {
