@@ -108,9 +108,15 @@ margin-top: 1rem;
   max-width: 90%;
 }
 
+.submited-word{
+  margin-top: 1rem;
+  font-weight: 300;
+}
+
 .solution-message{
   margin-bottom: 2rem;
   margin-top: 1rem;
+  font-weight: 300;
 }
 
 .hidden {
