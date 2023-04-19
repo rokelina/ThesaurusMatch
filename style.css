@@ -88,7 +88,6 @@ margin-top: 1rem;
   text-align: center;
 }
 
-/*    Solution container    */
 .solution-box{
   display: grid;
   grid-template-columns: 100%;
