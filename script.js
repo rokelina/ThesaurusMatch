@@ -74,7 +74,6 @@ function onSubmit(e) {
   submitedWord.textContent = input;
   formInput.value = '';
   show(solutionContainer);
-  show(restartBtn);
   disable(formInput);
 }
 
@@ -83,19 +82,18 @@ function onRestart() {
   show(promptWord);
   enable(formInput);
   hide(solutionContainer);
-  hide(restartBtn);
   hide(solutionWrapper);
   solutionBtn.textContent = 'Show solution';
 }
 
 function toggleSolution() {
-  if (solutionBtn.textContent === 'Show solution') {
+  if (solutionBtn.textContent === 'Hide solution') {
+    hide(solutionWrapper);
+    solutionBtn.textContent = 'Show solution';
+  } else {
     show(solutionWrapper);
     solutionList.textContent = solutionList.textContent.split(',').join(', ');
     solutionBtn.textContent = 'Hide solution';
-  } else {
-    hide(solutionWrapper);
-    solutionBtn.textContent = 'Show solution';
   }
 }
 
