@@ -11,25 +11,6 @@ const solutionWrapper = document.getElementById('solution-box');
 const solutionList = document.getElementById('solution-list');
 const restartBtn = document.getElementById('restart-button');
 
-async function getData() {
-  try {
-    const res = await fetch('./dataset/thesaurus.json');
-    if (!res.ok) {
-      throw new Error('Something went wrong');
-    }
-    const data = await res.json();
-
-    const randomWordObject = getRandomWord(data);
-    promptWord.textContent = randomWordObject.word;
-    solutionList.textContent = randomWordObject.synonyms;
-
-    show(startBtn);
-  } catch (error) {
-    showErrorMessage();
-    console.error('Something went wrong');
-  }
-}
-
 function getRandomWord(arr) {
   const randomIndex = Math.floor(Math.random() * arr.length + 1);
   const randomWord = arr[randomIndex].word;
@@ -40,12 +21,39 @@ function getRandomWord(arr) {
     .map((word) => word.toLowerCase());
 
   const synonymArray = [...new Set(allSynonyms)];
+
   const outputWord = {
     word: randomWord,
     synonyms: synonymArray,
   };
 
   return outputWord;
+}
+
+async function getData() {
+  try {
+    const res = await fetch('./dataset/thesaurus.json');
+    if (!res.ok) {
+      throw new Error('Something went wrong');
+    }
+    const data = await res.json();
+
+    //call getRandomWord on data
+    const randomWordObject = getRandomWord(data);
+    promptWord.textContent = randomWordObject.word;
+
+    // Create a label element for each element in the synonyms array
+    randomWordObject.synonyms.forEach((synonym) => {
+      const li = document.createElement('li');
+      li.textContent = synonym;
+      solutionList.appendChild(li);
+    });
+
+    show(startBtn);
+  } catch (error) {
+    showErrorMessage();
+    console.error('Something went wrong');
+  }
 }
 
 function onStart() {
@@ -63,12 +71,15 @@ function onSubmit(e) {
     alert('Type a synonym');
     return;
   }
-  //compare the value of input with the text content of li
-  const array = solutionList.textContent.split(',');
+
+  const array = Array.from(document.querySelectorAll('li')).map(
+    (li) => li.textContent
+  );
+
   if (array.includes(input.trim().toLowerCase())) {
-    solutionMessage.textContent = '🟢 Correct!';
+    solutionMessage.innerHTML = `<span style="color:green" aria-label="Correct">🟢</span> Correct!`;
   } else {
-    solutionMessage.textContent = "🔴 That doesn't seem to be a synonym";
+    solutionMessage.innerHTML = `<span style="color:red" aria-label="Not a synonym">🔴</span> That doesn't seem to be a synonym`;
   }
 
   submitedWord.textContent = input;
@@ -84,6 +95,7 @@ function onRestart() {
   hide(solutionContainer);
   hide(solutionWrapper);
   solutionBtn.textContent = 'Show solution';
+  document.querySelectorAll('li').forEach((li) => li.remove());
 }
 
 function toggleSolution() {
@@ -92,7 +104,6 @@ function toggleSolution() {
     solutionBtn.textContent = 'Show solution';
   } else {
     show(solutionWrapper);
-    solutionList.textContent = solutionList.textContent.split(',').join(', ');
     solutionBtn.textContent = 'Hide solution';
   }
 }
