@@ -98,22 +98,11 @@ margin-top: 1rem;
 .solution-box{
   display: grid;
   grid-template-columns: 100%;
-  align-items: center;
   margin-top: 1rem;
 }
 
-.solution-list{
-  text-align: start;
-  word-wrap: break-word;
-  word-spacing: 3px;
-  height: fit-content;
-  background-color:#fbf9f9;
-  font-size: 14px;
-  border-radius: 10px;
-  border: 1px solid #555555;
-  padding: 10px 5px;
-  margin: 5%;
-  max-width: 90%;
+ul{
+  list-style-type: none;
 }
 
 .submited-word{
