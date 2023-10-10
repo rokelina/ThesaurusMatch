@@ -49,13 +49,12 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
-  margin-top: 2.5rem;
+  margin-top: 2rem;
+  padding: 1rem;
 }
 
 header h1 {
   font-weight: 300;
-  margin-left: 0.6rem;
 }
 
 button {
