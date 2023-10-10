@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Synonym Finder</title>
+    <title>Find A Synonym!</title>
   </head>
   <body>
     <main class="container">
       <header>
         <img src="images/dictionary.png" alt="" />
-        <h1>Synonym Finder</h1>
+        <h1>Find A Synonym!</h1>
       </header>
       <div>
         <button id="start-app" class="hidden">Start</button>
@@ -34,10 +34,12 @@
           <h2 id="submited-word" class="submited-word"></h2>
           <h4 id="solution-message" class="solution-message"></h4>
           <div class="solution">
-            <button id="restart-button" class="restart-btn">Restart</button>
-            <button id="solution-button" class="solution-btn">
-              Show solution
-            </button>
+            <div class="solution-controls">
+              <button id="restart-button" class="restart-btn">Restart</button>
+              <button id="solution-button" class="solution-btn">
+                Show solution
+              </button>
+            </div>
             <div id="solution-box" class="solution-box hidden">
               <ul id="solution-list"></ul>
             </div>
@@ -47,13 +49,11 @@
     </main>
     <script type="module" src="script.js"></script>
     <footer>
-      <label>Open GitHub repository</label>
-      <a
-        target="_blank"
-        href="https://github.com/rokelina/synonyms-game"
-        class="logo"
-        ><img src="images/github-mark-white.png" alt="" height="35"
-      /></a>
+      <a target="_blank" href="https://github.com/rokelina/synonyms-game">
+        <div class="logo">
+          <label>Open GitHub repository</label>
+          <img src="images/github-mark-white.png" alt="" height="35" /></div
+      ></a>
     </footer>
   </body>
 </html>
