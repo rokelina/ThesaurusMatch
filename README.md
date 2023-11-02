@@ -5,7 +5,7 @@ It randomly selects a word from a thesaurus database and prompts the user to ent
 
 ## Demo
 
-![ThesaurusMatch Demo](demo.gif)
+![ThesaurusMatch Demo](thesaurus-demo.gif)
 
 ## Database sources
 
