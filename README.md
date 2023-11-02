@@ -5,6 +5,8 @@ It randomly selects a word from a thesaurus database and prompts the user to ent
 
 ## Demo
 
+[link](https://thesaurus-match.netlify.app/)
+
 ![ThesaurusMatch Demo](thesaurus-demo.gif)
 
 ## Database sources
