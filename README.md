@@ -1,13 +1,15 @@
 # ThesaurusMatch
 
-ThesaurusMatch is a Vanilla JS application that was created to implement JS fundamentals like traversing the DOM, manipulating styles, event handling and asynchronous functions.
+ThesaurusMatch is a Vanilla Javascript application that was created to implement JS fundamentals like traversing the DOM, manipulating styles, event handling and asynchronous functions.
 It randomly selects a word from a thesaurus database and prompts the user to enter a synonym for that word. When that word is submitted, it compares the user input to the array of synonyms available in the dataset for that particular word, and displays a message indicating whether a match was found.
 
 ## Demo
 
-Netlify Demo [link](https://thesaurus-match.netlify.app/)
+[Demo](https://thesaurus-match.netlify.app/)
 
-![ThesaurusMatch Demo](thesaurus-demo.gif)
+<p align="center">
+  <img src="thesaurus-demo.gif">
+</p>
 
 ## Database sources
 
