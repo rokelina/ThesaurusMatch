@@ -1,0 +1,15 @@
+- validate.py 
+1 """ Read the word frequency csv file and append the 10.000 most 
+    frequent words that are larger than 3 characters """
+
+script
+//improve solution array eliminate doubles, italics, change font size
+
+DONE:
+//change transparency when button is disabled
+
+//restart button functionality
+
+//footer
+
+// fix how to load the json file. use fetch api?
